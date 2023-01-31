@@ -76,6 +76,43 @@ module switch_holder() {
 
 switch_holder();
 
+module main_posts() {
+    difference(){
+        // main posts
+        union(){
+            translate([0,-19,-31])
+            rotate([-90,0,90])
+            rotate_extrude(angle = -40)
+            translate([65,0,0])
+                square([5, 22], center = true);
+
+            translate([0,19,-31])
+            rotate([-90,0,-90])
+            rotate_extrude(angle = -40)
+            translate([65,0,0])
+                square([5, 22], center = true);
+        };
+        // cleanup to remove overlap
+        translate([0,0,70.1])
+        union(){
+            rotate([0,90,0])
+            rotate_extrude(angle = -40)
+            translate([65,0,0])
+                square([5, 22], center = true);
+            rotate([0,90,0])
+            rotate_extrude(angle = 40)
+            translate([65,0,0])
+                square([5, 22], center = true);
+        }
+    }   
+    
+    translate([10,0,0])
+        end_wall();
+    
+    translate([-10,0,0])
+        end_wall();
+}
+
 module column() {
     // curved top mount
     difference(){
@@ -112,46 +149,18 @@ module column() {
         rotate([20, 0, 0])
         switch_holder();
     // leg posts
-    difference(){
-        // main posts
-        union(){
-            translate([0,-19,-31])
-            rotate([-90,0,90])
-            rotate_extrude(angle = -40)
-            translate([65,0,0])
-                square([5, 22], center = true);
-
-            translate([0,19,-31])
-            rotate([-90,0,-90])
-            rotate_extrude(angle = -40)
-            translate([65,0,0])
-                square([5, 22], center = true);
-        };
-        // cleanup to remove overlap
-        translate([0,0,70.1])
-        union(){
-            rotate([0,90,0])
-            rotate_extrude(angle = -40)
-            translate([65,0,0])
-                square([5, 22], center = true);
-            rotate([0,90,0])
-            rotate_extrude(angle = 40)
-            translate([65,0,0])
-                square([5, 22], center = true);
-        }
-    }
-    
-    translate([10,0,0])
-        end_wall();
-    
-    translate([-10,0,0])
-        end_wall();
+    main_posts();
 }
 
 module column_dbl() {
     column();
     translate([-20,0,0])
     column();
+}
+module main_posts_dbl() {
+    main_posts();
+    translate([-20,0,0])
+    main_posts();
 }
 
 
