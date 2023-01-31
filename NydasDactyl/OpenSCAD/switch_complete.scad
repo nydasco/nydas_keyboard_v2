@@ -23,6 +23,41 @@ module keycap(keycap_width = 17.5, keycap_depth = 18) {
 
 
 $fn=360;
+ 
+
+module end_wall(){
+    difference(){
+        translate([0,0,-20])
+            cube([2,100,50], center = true);
+
+            //offset to clear borders
+            union(){
+            translate([0,0,64.4])
+                union(){
+                    rotate([0,90,0])
+                    rotate_extrude(angle = -40)
+                    translate([57,0,0])
+                        square([20, 22], center = true);
+                    rotate([0,90,0])
+                    rotate_extrude(angle = 40)
+                    translate([57,0,0])
+                        square([20, 22], center = true);
+                }
+
+            translate([0,-9,-31])
+            rotate([-90,0,90])
+            rotate_extrude(angle = -50)
+            translate([65,0,0])
+                square([20, 22], center = true);
+
+            translate([0,9,-31])
+            rotate([-90,0,-90])
+            rotate_extrude(angle = -50)
+            translate([65,0,0])
+                square([20, 22], center = true);
+        }
+    }
+}
 
 module switch_holder() {
     union(){
@@ -105,6 +140,12 @@ module column() {
                 square([5, 22], center = true);
         }
     }
+    
+    translate([10,0,0])
+        end_wall();
+    
+    translate([-10,0,0])
+        end_wall();
 }
 
 module column_dbl() {
@@ -112,3 +153,7 @@ module column_dbl() {
     translate([-20,0,0])
     column();
 }
+
+
+
+column();
