@@ -7,4 +7,6 @@ This repo currently contains two primary folders:
 
 A third folder will be created in the future that holds the code to flash onto a keyboard controller to make this whole thing work.
 
+Readme.md files have been added into each of the parent folders with information on the specific item.
+
 This is a personal project that I will be completing over a number of months, I'm in no great rush to get it completed, so please don't pin your hopes on getting a completed 'ready to go' version of this any time soon unless you want to finish it off yourself.
