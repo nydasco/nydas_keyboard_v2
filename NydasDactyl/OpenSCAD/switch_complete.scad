@@ -62,10 +62,12 @@ module end_wall(){
 module switch_holder() {
     union(){
         difference(){
-            cube([18.8, 17.8, 5], center = true);
+            cube([18.9, 17.9, 5], center = true);
             cube([13.2, 13.2, 5], center = true);
             translate([0,0,-1])
-                cube([18.8, 17.8, 3], center = true);
+                cube([18.9, 17.9, 3], center = true);
+            translate([0,0,-2])
+                cube([15,20,2], center = true);
         }
         translate([7.316373,7.080354,-2])
             cylinder(4, 1, $fs = 0.01);
@@ -74,7 +76,11 @@ module switch_holder() {
         keycap();
 }
 
-switch_holder();
+//switch_holder();
+
+
+
+
 
 module main_posts() {
     difference(){
@@ -137,7 +143,12 @@ module column() {
         translate([0, 22, 4])
             rotate([20, 0, 0])
             cube([18.8, 17.8, 10], center = true);
+       
+         translate([0,0,-4])
+            cube([15, 40, 10], center = true);
+
     }
+    
     // switch spaces
     switch_holder();
 
@@ -150,6 +161,7 @@ module column() {
         switch_holder();
     // leg posts
     main_posts();
+    
 }
 
 module column_dbl() {
@@ -157,12 +169,33 @@ module column_dbl() {
     translate([-20,0,0])
     column();
 }
+
+module column_dbl_encoder() {
+    column();
+    translate([-20,0,0])
+    difference(){
+        column();
+            
+        translate([0,-40,0])
+            rotate([-27,0,0])
+            cube([14,15,15], center = true);
+    }
+    encoder();
+}
 module main_posts_dbl() {
     main_posts();
     translate([-20,0,0])
     main_posts();
 }
 
+column_dbl_encoder();
 
+module encoder() {
+translate([-20,-40,0])
+    rotate([-27,0,0])
+    cube([14,2,15], center = true);
 
-column();
+translate([-20,-42,-5])
+    rotate([-27,0,0])
+    cylinder(10,5,5);
+}

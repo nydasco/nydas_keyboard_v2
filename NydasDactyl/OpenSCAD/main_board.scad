@@ -168,8 +168,7 @@ module wiring_passthrough() {
         cylinder(15,4,4,true);
 }
 
-
-
+module main_body() {
 difference() {
     union() {
         translate([0, 0, 7])
@@ -184,4 +183,6 @@ difference() {
         cube([200,200,50], center = true);
         wiring_passthrough();
 }
-ground_floor();
+}
+//translate([0,0,-10])
+//    ground_floor();
