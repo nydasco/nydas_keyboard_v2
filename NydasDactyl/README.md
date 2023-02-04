@@ -9,7 +9,7 @@ The keyboard is designed to accommodate the Nydas Amoeba per-key PCB which also 
 
 > What's missing?
 
-A few things... This is an active development project, and in my mind it's not ready to print yet. The aim is to add a trackball to the right half in place of the rotary coder and OLED (which will remain on the left half only). I need to do some work on the underside of the switch holder, as the Amoebas I've designed have little holes in each corner and I would like posts on the case that fit into these for stability.
+A few things... This is an active development project, and in my mind it's not ready to print yet. I'm part way through lining up a 34mm trackball to the right side. I need to refactor the thumb keys on this side to accommodate, and also put a bit of 'wrapping' around it so it doesn't look so bare. I need to do some work on the underside of the switch holder, as the Amoebas I've designed have little holes in each corner and I would like posts on the case that fit into these for stability.
 
 I'm planning to use the BlackPill controller, and when I get it programmed will create a new folder in this repo with the code to make it all work (but note that I use a modified Dvorak layout, so I'm imagining it would need some tweaking by anyone choosing to use it).
 
@@ -17,8 +17,5 @@ I'm planning to use the BlackPill controller, and when I get it programmed will 
 I'll try to keep these up to date as the design changes / more is added.
 This is the front. The aim is to keep it low, but also add in a fixed tenting that works for me.
 ![Front of the keyboard](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasDactyl/front.png)
-
-And this is the view from the thumb cluster. 
-![Back of the keyboard](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasDactyl/thumb_side.png)
 
 I'm not 100% sure about this right now, but I guess printing it and trying it out will tell me. Keyboards like the [Skeletyl](https://bastardkb.com/skeletyl/) curve the thumb keys the other way to the fingers (so the middle key is highest rather than lowest). I'm assuming this has been done for a good reason, and I'll waste a print finding out the hard way, but it makes sense to me that my thumb rolls the same way as my other fingers.
