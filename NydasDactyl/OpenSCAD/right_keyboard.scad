@@ -97,7 +97,7 @@ difference() {
 
 module right_keyboard() {
     main_body();
-    ground_floor(left=false);
+    //ground_floor(left=false);
 
  }
 

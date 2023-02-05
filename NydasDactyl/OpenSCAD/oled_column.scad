@@ -1,6 +1,6 @@
 use <switch_complete.scad>
 
-module oled_column(logo=true) { 
+module oled_column(logo=false) { 
     // curved top mount
     difference(){
         translate([0,0,64.4])
