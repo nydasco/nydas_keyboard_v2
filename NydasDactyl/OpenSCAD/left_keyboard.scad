@@ -1,5 +1,6 @@
 use <main_board.scad>
 use <switch_complete.scad>
+use <extras.scad>
 
 $fn=360;
  
@@ -68,7 +69,7 @@ module all_buttons() {
             
         // middle
         rotate([-10, 0, 0])
-            column();
+            column(full=true,wall_left = true, wall_right = true);
         };
         // remove overlap of walls
         translate([-40, -71, 0])
@@ -79,16 +80,16 @@ module all_buttons() {
     // ring
     translate([22, -11, 8.2])
         rotate([-10, -4, -4])
-        column();
+        column(full=true,wall_left = true, wall_right = true);
     // pinky
     translate([46, -30, 11.7])
         rotate([-10, -4, -14])
-        column();
+        column(full=true,wall_left = true, wall_right = true);
     // thumb
     difference() {
         translate([-40, -71, 0])
             rotate([27, 0, -60])
-            column();
+            column(full=true,wall_left = true, wall_right = true);
         // remove overlap of walls
         rotate([-10, 0, 0])
             resize([20,0,0])
@@ -241,19 +242,26 @@ difference() {
             rotate([0,90,0])
             cylinder(4,5,5,true);
     }
+    union(){
     translate([0, 0, -33])
         cube([200,200,70], center = true);
         wiring_passthrough();
+        
+    translate([-40,32,10])
+        rotate([90,0,0])
+        usb();
+        
+    
+    translate([-67,14,10])
+        rotate([270,0,0])
+        trrs();
+    }
 }
 }
 
 module left_keyboard(){
 mirror([180,0,0])
-union(){
 main_body();
-//translate([0,0,0])
-    ground_floor();
-}
 }
 
 left_keyboard();

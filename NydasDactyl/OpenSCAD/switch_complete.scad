@@ -1,29 +1,12 @@
-module keycap(keycap_width = 17.5, keycap_depth = 18) {
-    hull() {
-        //keycap base bottom
-        translate(v = [0, 0, 0.05]) {
-            linear_extrude(center = true, convexity = 0, height = 0.1) {
-                polygon(points = [[keycap_width/2, keycap_depth/2], [keycap_width/2, -keycap_depth/2], [-keycap_width/2, -keycap_depth/2], [-keycap_width/2, keycap_depth/2], [keycap_width/2, keycap_depth/2]]);
-            }
-        }
-        //keycap base top
-        translate(v = [0, 0, 2.05]) {
-            linear_extrude(center = true, convexity = 0, height = 0.1) {
-                polygon(points = [[keycap_width/2, keycap_depth/2], [keycap_width/2, -keycap_depth/2], [-keycap_width/2, -keycap_depth/2], [-keycap_width/2, keycap_depth/2], [keycap_width/2, keycap_depth/2]]);
-            }
-        }
-        //keycap top
-        translate(v = [0, 0, 3.55]) {
-            linear_extrude(center = true, convexity = 0, height = 0.1) {
-                polygon(points = [[(keycap_width-3)/2, (keycap_depth-3)/2], [(keycap_width-3)/2, -(keycap_depth-3)/2], [-(keycap_width-3)/2, -(keycap_depth-3)/2], [-(keycap_width-3)/2, (keycap_depth-3)/2], [(keycap_width-3)/2, (keycap_depth-3)/2]]);
-            }
-        }
-     }
- }
+use <keycap.scad>
+
+incl_keycap = true;
+incl_encoder = true;
 
 
-$fn=360;
- 
+wall_left = false;
+wall_right = false;
+full = true;
 
 module end_wall(){
     difference(){
@@ -32,57 +15,50 @@ module end_wall(){
 
             //offset to clear borders
             union(){
-            translate([0,0,64.4])
-                union(){
-                    rotate([0,90,0])
-                    rotate_extrude(angle = -40)
-                    translate([57,0,0])
-                        square([20, 22], center = true);
-                    rotate([0,90,0])
-                    rotate_extrude(angle = 40)
-                    translate([57,0,0])
-                        square([20, 22], center = true);
-                }
+                translate([0,0,64.4])
+                    union(){
+                        rotate([0,90,0])
+                        union(){
+                            rotate_extrude(angle = -40)
+                            translate([57,0,0])
+                                square([20, 22], center = true);
+                            rotate_extrude(angle = 40)
+                            translate([57,0,0])
+                                square([20, 22], center = true);
+                        }
+                    }
 
-            translate([0,-9,-31])
-            rotate([-90,0,90])
-            rotate_extrude(angle = -50)
-            translate([65,0,0])
-                square([20, 22], center = true);
+                translate([0,-9,-31])
+                rotate([-90,0,90])
+                rotate_extrude(angle = -50)
+                translate([65,0,0])
+                    square([20, 22], center = true);
 
-            translate([0,9,-31])
-            rotate([-90,0,-90])
-            rotate_extrude(angle = -50)
-            translate([65,0,0])
-                square([20, 22], center = true);
+                translate([0,9,-31])
+                rotate([-90,0,-90])
+                rotate_extrude(angle = -50)
+                translate([65,0,0])
+                    square([20, 22], center = true);
         }
     }
 }
 
-module switch_holder() {
-    union(){
-        difference(){
-            cube([18.9, 17.9, 5], center = true);
-            cube([13.2, 13.2, 5], center = true);
-            translate([0,0,-1])
-                cube([18.9, 17.9, 3], center = true);
-            translate([0,0,-2])
-                cube([15,20,2], center = true);
-        }
-        translate([7.316373,7.080354,-2])
-            cylinder(4, 1, $fs = 0.01);
+module switch_holder(keycap = true) {
+    difference(){
+        cube([18.9, 17.9, 5], center = true);
+        cube([13.2, 13.2, 5], center = true);
+        translate([0,0,-1])
+            cube([18.9, 17.9, 3], center = true);
+        translate([0,0,-2])
+            cube([15,20,2], center = true);
     }
+    if(keycap){
     translate([0,0,3])
         keycap();
+    }
 }
 
-//switch_holder();
-
-
-
-
-
-module main_posts() {
+module main_posts(wall_left = true, wall_right = true) {
     difference(){
         // main posts
         union(){
@@ -111,15 +87,17 @@ module main_posts() {
                 square([5, 22], center = true);
         }
     }   
-    
+    if(wall_left) {
     translate([10,0,0])
         end_wall();
-    
+    }
+    if(wall_right) {
     translate([-10,0,0])
         end_wall();
+    }
 }
 
-module column(full=true) {
+module column(full=true,wall_left = wall_left, wall_right = wall_right) {
     // curved top mount
     difference(){
         translate([0,0,64.4])
@@ -152,45 +130,21 @@ module column(full=true) {
     }
     
     // switch spaces
-    switch_holder();
+    switch_holder(keycap = incl_keycap);
 
     translate([0, -22, 3.96])
         rotate([-20, 0, 0])
-        switch_holder();
+        switch_holder(keycap = incl_keycap);
 
     if (full == true){
         
         translate([0, 22, 3.96])
             rotate([20, 0, 0])
-            switch_holder();
+            switch_holder(keycap = incl_keycap);
     }
     // leg posts
-    main_posts();
+    main_posts(wall_left = wall_left, wall_right = wall_right);
     
-}
-column(full=false);
-module column_dbl() {
-    column();
-    translate([-20,0,0])
-    column();
-}
-
-module column_dbl_encoder() {
-    column();
-    translate([-20,0,0])
-    difference(){
-        column();
-            
-        translate([0,-40,0])
-            rotate([-27,0,0])
-            cube([14,15,15], center = true);
-    }
-    encoder();
-}
-module main_posts_dbl() {
-    main_posts();
-    translate([-20,0,0])
-    main_posts();
 }
 
 module encoder() {
@@ -203,3 +157,26 @@ translate([-20,-42,-5])
     cylinder(10,5,5);
 }
 
+module main_posts_dbl() {
+    main_posts();
+    translate([-20,0,0])
+    main_posts();
+}
+
+module column_dbl_encoder(inc_encoder=true) {
+    column(full=true,wall_left = true, wall_right = false);
+    translate([-20,0,0])
+    difference(){
+        column(full=true,wall_left = false, wall_right = true);
+            
+        translate([0,-40,0])
+            rotate([-27,0,0])
+            cube([14,15,15], center = true);
+    }
+    if(inc_encoder){
+    encoder();
+    }
+}
+
+
+column_dbl_encoder();
