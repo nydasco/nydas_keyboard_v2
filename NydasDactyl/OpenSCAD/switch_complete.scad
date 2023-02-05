@@ -119,7 +119,7 @@ module main_posts() {
         end_wall();
 }
 
-module column() {
+module column(full=true) {
     // curved top mount
     difference(){
         translate([0,0,64.4])
@@ -140,9 +140,11 @@ module column() {
             rotate([-20, 0, 0])
             cube([18.8, 17.8, 10], center = true);
         
-        translate([0, 22, 4])
-            rotate([20, 0, 0])
-            cube([18.8, 17.8, 10], center = true);
+        if (full == true){
+            translate([0, 22, 4])
+                rotate([20, 0, 0])
+                cube([18.8, 17.8, 10], center = true);
+        }
        
          translate([0,0,-4])
             cube([15, 40, 10], center = true);
@@ -156,14 +158,17 @@ module column() {
         rotate([-20, 0, 0])
         switch_holder();
 
-    translate([0, 22, 3.96])
-        rotate([20, 0, 0])
-        switch_holder();
+    if (full == true){
+        
+        translate([0, 22, 3.96])
+            rotate([20, 0, 0])
+            switch_holder();
+    }
     // leg posts
     main_posts();
     
 }
-
+column(full=false);
 module column_dbl() {
     column();
     translate([-20,0,0])
@@ -198,111 +203,3 @@ translate([-20,-42,-5])
     cylinder(10,5,5);
 }
 
-
-module left_thumb_column() {
-    // curved top mount
-    difference(){
-        translate([0,0,-64.4])
-            union(){
-                rotate([0,270,0])
-                rotate_extrude(angle = -30)
-                translate([65,0,0])
-                    square([5, 22], center = true);
-                rotate([0,270,0])
-                rotate_extrude(angle = 30)
-                translate([65,0,0])
-                    square([5, 22], center = true);
-            }
-        // placeholder for switches
-        cube([18.8, 17.8, 10], center = true);
-        
-        translate([0, -22, 4])
-            rotate([20, 0, 0])
-            cube([18.8, 17.8, 10], center = true);
-        
-        translate([0, 22, 4])
-            rotate([-20, 0, 0])
-            cube([18.8, 17.8, 10], center = true);
-       
-        translate([0,0,-4])
-            cube([15, 60, 10], center = true);
-
-    }
-    
-    // switch spaces
-    switch_holder();
-
-    translate([0, -22, -3.96])
-        rotate([20, 0, 0])
-        switch_holder();
-
-    translate([0, 22, -3.96])
-        rotate([-20, 0, 0])
-        switch_holder();
-    // leg posts
-    difference() {
-        main_posts_left_thumb();
-    
-        translate([0,0,-4])
-            cube([15, 60, 10], center = true);
-    }
-    
-}
-module main_posts_left_thumb() {
-        // main posts
-        union(){
-            translate([0,-29,-31])
-            rotate([-90,0,90])
-            rotate_extrude(angle = -22)
-            translate([65,0,0])
-                square([5, 22], center = true);
-
-            translate([0,29,-31])
-            rotate([-90,0,-90])
-            rotate_extrude(angle = -22)
-            translate([65,0,0])
-                square([5, 22], center = true);
-        };
-    
-    translate([10,0,0])
-        end_wall_left_thumb();
-    
-    translate([-10,0,0])
-        end_wall_left_thumb();
-}
-
-module end_wall_left_thumb(){
-    difference(){
-        translate([0,0,-20])
-            cube([2,100,50], center = true);
-
-            //offset to clear borders
-            union(){
-            translate([0,0,-44.4])
-                union(){
-                    rotate([0,270,0])
-                    rotate_extrude(angle = -40)
-                    translate([57,0,0])
-                        square([20, 22], center = true);
-                    rotate([0,270,0])
-                    rotate_extrude(angle = 40)
-                    translate([57,0,0])
-                        square([20, 22], center = true);
-                }
-
-            translate([0,-9,-31])
-            rotate([-90,0,90])
-            rotate_extrude(angle = -50)
-            translate([65,0,0])
-                square([40, 22], center = true);
-
-            translate([0,9,-31])
-            rotate([-90,0,-90])
-            rotate_extrude(angle = -50)
-            translate([65,0,0])
-                square([40, 22], center = true);
-        }
-    }
-}
-
-left_thumb_column();

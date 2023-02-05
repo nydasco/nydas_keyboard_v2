@@ -255,3 +255,5 @@ main_body();
     ground_floor();
 }
 }
+
+left_keyboard();

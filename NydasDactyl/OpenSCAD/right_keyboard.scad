@@ -1,5 +1,6 @@
 use <main_board.scad>
 use <switch_complete.scad>
+use <right_thumb.scad>
 
 $fn=360;
  
@@ -88,7 +89,7 @@ module all_buttons() {
     difference() {
         translate([-40, -71, 0])
             rotate([27, 0, -60])
-            column();
+            right_thumb();
         // remove overlap of walls
         rotate([-10, 0, 0])
             resize([20,0,0])
@@ -247,58 +248,15 @@ difference() {
 }
 }
 
-module track_ball() {
-    difference() {
-        translate(v = [0, 0, 2]) {
-            rotate(a = [0, 0, 0]) {
-                import(convexity = 2, file = "parts/trackball_socket_body_34mm.stl", origin = [0, 0]);
-            }
-        }
-        translate(v = [0, 0, 2]) {
-            rotate(a = [0, 0, 0]) {
-                union() {
-                    import(convexity = 2, file = "parts/trackball_socket_cutter_34mm.stl", origin = [0, 0]);
-                    import(convexity = 2, file = "parts/trackball_sensor_cutter.stl", origin = [0, 0]);
-                }
-            }
-        }
-    }
-    translate(v = [0, 0, 0.001]) {
-        translate(v = [0, 0, 2.]) {
-            rotate(a = [0, 0, 0]) {
-                import(convexity = 2, file = "parts/trackball_sensor_mount.stl", origin = [0, 0]);
-            }
-        }
-    }
-}
-
 
 module right_keyboard() {
-difference(){
     main_body();
-    union(){
-    translate([-10,-65,25])
-        rotate([50,10,-80])
-            import(convexity = 2, file = "parts/trackball_socket_cutter_34mm.stl", origin = [0, 0]);
-    }
-
-    translate([-10,-65,25])
-        rotate([50,10,-80])
-        translate([0,0,2])
-            cylinder(20,20,20, center = true);
-}
-translate([-10,-65,25])
-    rotate([50,10,-80])
-    track_ball();
-translate([0,0,0])
-    ground_floor();
+    //ground_floor();
 
 
-    translate([-12,-66,27])
-        sphere(d = 34);
 
  }
 
 
-
+right_keyboard();
 
