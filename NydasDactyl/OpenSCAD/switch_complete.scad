@@ -1,7 +1,7 @@
 use <keycap.scad>
 
-incl_keycap = true;
-incl_encoder = true;
+incl_keycap = false;
+incl_encoder = false;
 
 
 wall_left = false;
@@ -163,7 +163,7 @@ module main_posts_dbl() {
     main_posts();
 }
 
-module column_dbl_encoder(inc_encoder=true) {
+module column_dbl_encoder(inc_encoder=false) {
     column(full=true,wall_left = true, wall_right = false);
     translate([-20,0,0])
     difference(){

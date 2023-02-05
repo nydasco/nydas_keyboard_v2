@@ -53,8 +53,8 @@ module right_thumb(){
                 cylinder(55,17,20);
             }
     
-    translate(track_ball_offset)
-        sphere(d = 34);
+//    translate(track_ball_offset)
+//        sphere(d = 34);
     
 }
 
