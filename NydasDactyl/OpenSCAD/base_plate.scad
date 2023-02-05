@@ -51,7 +51,20 @@ module base_plate(left) {
             union(){
             translate([-40, -71, 0])
                 rotate([27, 0, -60])
-                right_thumb(); 
+                main_posts(); 
+               if(left) {}
+              else { 
+            translate([-40, -71, 0])
+                rotate([27, 0, -60])
+                
+            translate([10,47.9,-35.5])
+                rotate(track_ball_rotation)
+                difference(){
+                    cylinder(50,25,25);
+                        
+                    cylinder(55,17,20);
+                } 
+            }
             }
             // remove overlap of walls
             rotate([-10, 0, 0])
@@ -148,3 +161,5 @@ module ground_floor(left) {
 }
 
 ground_floor(left=false);
+
+cylinder(10,

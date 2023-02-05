@@ -1,6 +1,6 @@
 use <switch_complete.scad>
 
-module oled_column() { 
+module oled_column(logo=true) { 
     // curved top mount
     difference(){
         translate([0,0,64.4])
@@ -23,11 +23,15 @@ module oled_column() {
     // leg posts
     difference(){
     main_posts();
-//    translate([0,-39.5,0])
-//    rotate([60,0,0])
-//    scale([0.05,0.05,0.03])
-//    surface(file =  "parts/logo.png",  center = true);
+    if(logo){
+    translate([0,-40.5,0])
+        rotate([63,0,0])
+        scale([0.2,0.2,1.3])
+        import(file = "parts/logo.svg", center = true, dpi = 96);
     }
+    }
+    
+    
 
     // OLED Clip
     translate([0,0,1])
