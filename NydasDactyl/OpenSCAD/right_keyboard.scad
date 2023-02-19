@@ -8,6 +8,9 @@ use <extras.scad>
 
 $fn=360;
 
+
+
+
 module all_buttons() {
     difference() {
         union() {
@@ -91,6 +94,12 @@ difference() {
     translate([-67,14,10])
         rotate([270,0,0])
         trrs();
+    
+    
+        translate([21,-37,18])
+    rotate([50,2,-8])
+    cube([20,5,15], center = true);
+    
 }
 }
 
