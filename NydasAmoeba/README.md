@@ -26,12 +26,12 @@ The Data In/Out points link to the three pad solder points to the left and right
 The 0603 0.1uF capacitor point is likely optional. It just helps maintain power for the RGB.
 
 ## Some More Pics
-![Printed Front](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/printed_front.heic)
-![Printed Rear](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/printed_rear.heic)
-![Soldered Front](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/soldered_front.heic)
-![Soldered Rear](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/soldered_rear.heic)
-![With Switches](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/with_switches.heic)
-![With Keys](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/with_keys.heic)
+![Printed Front](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/printed_front.png)
+![Printed Rear](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/printed_rear.png)
+![Soldered Front](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/soldered_front.png)
+![Soldered Rear](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/soldered_rear.png)
+![With Switches](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/with_switches.png)
+![With Keys](https://github.com/nydasco/nydas_keyboard_v2/raw/main/NydasAmoeba/Images/with_keys.png)
 
 > What if I don't want RGB?
 
