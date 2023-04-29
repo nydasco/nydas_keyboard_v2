@@ -4,14 +4,14 @@ incl_keycap = false;
 incl_encoder = false;
 
 
-wall_left = false;
-wall_right = false;
+wall_left = true;
+wall_right = true;
 full = true;
 
 module end_wall(){
     difference(){
-        translate([0,0,-20])
-            cube([2,100,50], center = true);
+        translate([-0.5,0,-10])
+            cube([1,100,50], center = true);
 
             //offset to clear borders
             union(){
@@ -32,13 +32,13 @@ module end_wall(){
                 rotate([-90,0,90])
                 rotate_extrude(angle = -50)
                 translate([65,0,0])
-                    square([20, 22], center = true);
+                    square([25, 12], center = true);
 
                 translate([0,9,-31])
                 rotate([-90,0,-90])
                 rotate_extrude(angle = -50)
                 translate([65,0,0])
-                    square([20, 22], center = true);
+                    square([25, 12], center = true);
         }
     }
 }
@@ -65,25 +65,25 @@ module main_posts(wall_left = true, wall_right = true) {
             translate([0,-19,-31])
             rotate([-90,0,90])
             rotate_extrude(angle = -40)
-            translate([65,0,0])
-                square([5, 22], center = true);
+            translate([62,0,0])
+                square([3.5, 20], center = true);
 
             translate([0,19,-31])
             rotate([-90,0,-90])
             rotate_extrude(angle = -40)
-            translate([65,0,0])
-                square([5, 22], center = true);
+            translate([62,0,0])
+                square([3.5, 20], center = true);
         };
         // cleanup to remove overlap
-        translate([0,0,70.1])
+        translate([0,0,66.6])
         union(){
             rotate([0,90,0])
             rotate_extrude(angle = -40)
-            translate([65,0,0])
+            translate([62,0,0])
                 square([5, 22], center = true);
             rotate([0,90,0])
             rotate_extrude(angle = 40)
-            translate([65,0,0])
+            translate([62,0,0])
                 square([5, 22], center = true);
         }
     }   
@@ -92,7 +92,7 @@ module main_posts(wall_left = true, wall_right = true) {
         end_wall();
     }
     if(wall_right) {
-    translate([-10,0,0])
+    translate([-9,0,0])
         end_wall();
     }
 }
@@ -103,23 +103,23 @@ module column(full=true,wall_left = wall_left, wall_right = wall_right) {
         translate([0,0,64.4])
             union(){
                 rotate([0,90,0])
-                rotate_extrude(angle = -30)
+                rotate_extrude(angle = -27)
                 translate([65,0,0])
-                    square([5, 22], center = true);
+                    square([5, 20], center = true);
                 rotate([0,90,0])
-                rotate_extrude(angle = 30)
+                rotate_extrude(angle = 27)
                 translate([65,0,0])
-                    square([5, 22], center = true);
+                    square([5, 20], center = true);
             }
         // placeholder for switches
         cube([18.8, 17.8, 10], center = true);
         
-        translate([0, -22, 4])
+        translate([0, -19.5, 4])
             rotate([-20, 0, 0])
             cube([18.8, 17.8, 10], center = true);
         
         if (full == true){
-            translate([0, 22, 4])
+            translate([0, 19.5, 4])
                 rotate([20, 0, 0])
                 cube([18.8, 17.8, 10], center = true);
         }
@@ -130,16 +130,17 @@ module column(full=true,wall_left = wall_left, wall_right = wall_right) {
     }
     
     // switch spaces
-    switch_holder(keycap = incl_keycap);
+    translate([0, 0, 0.5])
+        switch_holder(keycap = incl_keycap);
 
-    translate([0, -22, 3.96])
-        rotate([-20, 0, 0])
+    translate([0, -19.5, 3.3])
+        rotate([-17.1, 0, 0])
         switch_holder(keycap = incl_keycap);
 
     if (full == true){
         
-        translate([0, 22, 3.96])
-            rotate([20, 0, 0])
+        translate([0, 19.5, 3.3])
+            rotate([17.1, 0, 0])
             switch_holder(keycap = incl_keycap);
     }
     // leg posts
@@ -178,5 +179,5 @@ module column_dbl_encoder(inc_encoder=false) {
     }
 }
 
-
-column_dbl_encoder();
+column();
+//column_dbl_encoder();

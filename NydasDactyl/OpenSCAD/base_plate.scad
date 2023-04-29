@@ -161,5 +161,3 @@ module ground_floor(left) {
 }
 
 ground_floor(left=false);
-
-cylinder(10,

@@ -6,13 +6,13 @@ module oled_column(logo=false) {
         translate([0,0,64.4])
             union(){
                 rotate([0,90,0])
-                rotate_extrude(angle = -30)
+                rotate_extrude(angle = -27)
                 translate([65,0,0])
-                    square([5, 22], center = true);
+                    square([5, 20], center = true);
                 rotate([0,90,0])
-                rotate_extrude(angle = 30)
+                rotate_extrude(angle = 27)
                 translate([65,0,0])
-                    square([5, 22], center = true);
+                    square([5, 20], center = true);
             }
         
         cube([17.5, 51.0, 10.0], center = true);
@@ -56,6 +56,9 @@ module oled_column(logo=false) {
         translate(v = [0, 18.5, -2.5]) {
             cube([12.5, 9.01, 8.0], center = true);
         }
+        
+        translate([0,-23,-2])
+            cube([15,5,5], center = true);
     }
 }
 

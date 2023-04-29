@@ -11,39 +11,39 @@ module all_buttons() {
     difference() {
         union() {
         // index (dbl width)
-        translate([-25, -10, 8.2])
+        translate([-21, -9, 8.2])
             rotate([-10, 4, 4])
             column_dbl_encoder();
-        translate([-65,-22,0])
+        translate([-60,-22,0])
             rotate([0, -7, 4])
             oled_column(logo=false);
             
         // middle
-        rotate([-10, 0, 0])
+        rotate([-5, 0, 0])
             column(full=true,wall_left = true, wall_right = true);
         };
         // remove overlap of walls
-        translate([-40, -71, 0])
+        translate([-32, -75, 0])
             rotate([27, 0, -60])
             resize([20,0,0])
             end_wall();
     };
     // ring
-    translate([22, -11, 8.2])
+    translate([21, -11, 8.2])
         rotate([-10, -4, -4])
         column(full=true,wall_left = true, wall_right = true);
     // pinky
-    translate([46, -30, 11.7])
+    translate([42, -30, 11.7])
         rotate([-10, -4, -14])
         column(full=true,wall_left = true, wall_right = true);
     // thumb
     difference() {
-        translate([-40, -71, 0])
+        translate([-35, -65, 0])
             rotate([27, 0, -60])
             column(full=true,wall_left = true, wall_right = true);
         // remove overlap of walls
-        rotate([-10, 0, 0])
-            resize([20,0,0])
+        rotate([-15, 0, 0])
+            resize([30,0,0])
             end_wall();
     }
 }
@@ -56,9 +56,9 @@ difference() {
         rotate([0,7,0])
             all_buttons();
         // fix for passthrough to pinky which leaves a gap due to splay
-        translate([32,-45,10])
+        translate([28,-45,10])
             rotate([0,90,0])
-            cylinder(4,5,5,true);
+            cylinder(1,5,5,true);
     }
     union(){
     translate([0, 0, -33])
@@ -70,10 +70,11 @@ difference() {
         usb();
         
     
-    translate([-67,14,10])
-        rotate([270,0,0])
+    translate([-63,12,10])
+        rotate([280,0,0])
         trrs();
     }
+    
 }
 }
 
@@ -81,7 +82,7 @@ module left_keyboard(){
 mirror([180,0,0])
     union() {
         main_body();
-        ground_floor(left=true);
+        //ground_floor(left=true);
     }
 }
 
