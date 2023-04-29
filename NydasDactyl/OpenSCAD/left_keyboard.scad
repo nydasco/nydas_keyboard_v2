@@ -19,7 +19,7 @@ module all_buttons() {
             oled_column(logo=false);
             
         // middle
-        rotate([-5, 0, 0])
+        rotate([-3, 0, 0])
             column(full=true,wall_left = true, wall_right = true);
         };
         // remove overlap of walls
@@ -42,10 +42,11 @@ module all_buttons() {
             rotate([27, 0, -60])
             column(full=true,wall_left = true, wall_right = true);
         // remove overlap of walls
-        rotate([-15, 0, 0])
-            resize([30,0,0])
-            end_wall();
+    translate([3,-35,-4])
+        rotate([90,0,0])
+        cylinder(10,5,5, center = true);
     }
+
 }
 
 
