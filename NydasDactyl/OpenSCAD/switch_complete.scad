@@ -149,13 +149,21 @@ module column(full=true,wall_left = wall_left, wall_right = wall_right) {
 }
 
 module encoder() {
-translate([-20,-40,0])
-    rotate([-27,0,0])
-    cube([14,2,15], center = true);
+    difference(){
+        union(){
+            translate([-20,-34,0])
+                rotate([-33,0,0])
+                cube([14,5,15], center = true);
 
-translate([-20,-42,-5])
-    rotate([-27,0,0])
-    cylinder(10,5,5);
+            translate([-22,-36,-5])
+                rotate([-33,0,0])
+                cylinder(10,5,5);
+        }
+
+            translate([-10,-36,0])
+                rotate([-33,0,0])
+                cube([14,2,18], center = true);
+    }
 }
 
 module main_posts_dbl() {
@@ -169,15 +177,17 @@ module column_dbl_encoder(inc_encoder=false) {
     translate([-20,0,0])
     difference(){
         column(full=true,wall_left = false, wall_right = true);
-            
-        translate([0,-40,0])
-            rotate([-27,0,0])
-            cube([14,15,15], center = true);
+        translate([20,0,0])
+        encoder();
     }
+    translate([-20,-33,-12])
+        rotate([-123,0,0])
+        cube([20,3,15], center = true);
     if(inc_encoder){
     encoder();
     }
 }
 
-column();
-//column_dbl_encoder();
+//column();
+column_dbl_encoder();
+//encoder();

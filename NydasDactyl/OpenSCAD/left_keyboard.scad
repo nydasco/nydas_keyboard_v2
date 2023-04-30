@@ -4,7 +4,7 @@ use <extras.scad>
 use <base_plate.scad>
 use <oled_column.scad>
 use <wiring_passthrough.scad>
-$fn=360;
+$fn=60;
  
 
 module all_buttons() {
@@ -22,11 +22,17 @@ module all_buttons() {
         rotate([-3, 0, 0])
             column(full=true,wall_left = true, wall_right = true);
         };
+        union(){
         // remove overlap of walls
-        translate([-32, -75, 0])
+        translate([-36, -75, 0])
             rotate([27, 0, -60])
             resize([20,0,0])
             end_wall();
+        
+        translate([-4,-35,-4])
+            rotate([90,0,0])
+            cylinder(10,5,5, center = true);
+        }
     };
     // ring
     translate([21, -11, 8.2])
@@ -38,11 +44,11 @@ module all_buttons() {
         column(full=true,wall_left = true, wall_right = true);
     // thumb
     difference() {
-        translate([-35, -65, 0])
+        translate([-40, -65, 0])
             rotate([27, 0, -60])
             column(full=true,wall_left = true, wall_right = true);
         // remove overlap of walls
-    translate([3,-35,-4])
+    translate([-4,-35,-4])
         rotate([90,0,0])
         cylinder(10,5,5, center = true);
     }
